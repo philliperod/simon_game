@@ -1,0 +1,14 @@
+@import './variables';
+@import './simonsvg';
+
+body {
+  background-color: $primary-color;
+  text-align: center;
+}
+
+#level-title {
+  color: $text-color;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  font-family: 'Press Start 2P', cursive;
+}
