@@ -1,5 +1,18 @@
-.container {
+svg {
   display: inline-block;
   height: 80vh;
   width: 80vw;
+}
+
+#main__base,
+#right__base,
+#center__console,
+#right__console {
+  pointer-events: none;
+}
+
+.pressed {
+  box-shadow: 0 0 20px white;
+  background-color: grey;
+  transform: scale(1.25);
 }
