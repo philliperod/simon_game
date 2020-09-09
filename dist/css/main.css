@@ -12,11 +12,8 @@ svg {
 }
 
 .pressed {
-  -webkit-box-shadow: 0 0 20px white;
-          box-shadow: 0 0 20px white;
-  background-color: grey;
-  -webkit-transform: scale(1.25);
-          transform: scale(1.25);
+  -webkit-filter: url(#light__up);
+          filter: url(#light__up);
 }
 
 body {
