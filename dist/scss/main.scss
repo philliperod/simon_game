@@ -8,12 +8,13 @@ body {
 
 h2 {
   font-family: 'Russo One', sans-serif;
+  color: $text-color;
+  margin-bottom: 5%;
 }
 
 #level-title {
   color: $text-color;
   margin-top: 5%;
-  margin-bottom: 10%;
   font-family: 'Press Start 2P', cursive;
 }
 

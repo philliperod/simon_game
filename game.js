@@ -40,8 +40,8 @@ function animatePress(currentColor) {
   // this will animate a svg drop-shadow highlight when a button is pressed
 }
 
-function checkAnswer(currentLevel) {
-  if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
+function checkAnswer(lastColor) {
+  if (userClickedPattern[lastColor] === gamePattern[lastColor]) {
     var count = 0;
 
     for (var i = 0; i < gamePattern.length; i++) {
@@ -63,6 +63,8 @@ function checkAnswer(currentLevel) {
     setTimeout(function() {
       $(document).removeClass('game-over');
     }, 100);
+    $('#lead-title').text('Game Over');
+    $('h2').text('Press Any Key to Restart');
   }
 }
 
@@ -71,6 +73,7 @@ $('.btn').on('click', function() {
   userClickedPattern.push(userChosenColors);
   animatePress(userChosenColors);
   playSound(userChosenColors);
+  checkAnswer(userClickedPattern.lastIndexOf(userChosenColors));
 
   // this will select the btn class and attached a click eventListener
   // it will take in the id of the input and store it into variable userChosenColors

@@ -23,12 +23,13 @@ body {
 
 h2 {
   font-family: 'Russo One', sans-serif;
+  color: #fef2bf;
+  margin-bottom: 5%;
 }
 
 #level-title {
   color: #fef2bf;
   margin-top: 5%;
-  margin-bottom: 10%;
   font-family: 'Press Start 2P', cursive;
 }
 
