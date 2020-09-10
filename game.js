@@ -32,10 +32,13 @@ function playSound(name) {
 }
 
 function animatePress(currentColor) {
-  $('#' + currentColor).addClass('pressed');
-  setTimeout(function() {
-    $('#' + currentColor).removeClass('pressed');
-  }, 100);
+  $('#' + currentColor)
+    .animate({opacity: 0.25}, 100)
+    .animate({opacity: 1}, 50);
+  //   addClass('pressed');
+  //   setTimeout(function() {
+  //     $('#' + currentColor).removeClass('pressed');
+  //   }, 100);
 
   // this will animate a svg drop-shadow highlight when a button is pressed
 }
@@ -59,11 +62,12 @@ function checkAnswer(lastColor) {
     console.log('failed');
     var failedAudio = new Audio('sounds/wrong.mp3');
     failedAudio.play();
-    $(document).addClass('game-over');
+    $('body').addClass('game-over');
     setTimeout(function() {
-      $(document).removeClass('game-over');
+      $('body').removeClass('game-over');
     }, 100);
     $('#lead-title').text('Game Over');
+    $('#lead-title').css('margin-bottom', '');
     $('h2').text('Press Any Key to Restart');
   }
 }
@@ -80,6 +84,14 @@ $('.btn').on('click', function() {
   // it will add that id name at the end of the userClickedPattern array
   // it will animate a drop-shadow effect and play the associated sound that matches the id name whenever the button is clicked
 });
+
+$('.btn')
+  .mouseenter(function() {
+    $(this).addClass('pressed');
+  })
+  .mouseleave(function() {
+    $(this).removeClass('pressed');
+  });
 
 $(document).on('keypress', function() {
   nextSequence();
