@@ -35,12 +35,7 @@ function animatePress(currentColor) {
   $('#' + currentColor)
     .animate({opacity: 0.25}, 100)
     .animate({opacity: 1}, 50);
-  //   addClass('pressed');
-  //   setTimeout(function() {
-  //     $('#' + currentColor).removeClass('pressed');
-  //   }, 100);
-
-  // this will animate a svg drop-shadow highlight when a button is pressed
+  // this will animate a fade-in and fade-out when a button is pressed
 }
 
 function checkAnswer(lastColor) {
