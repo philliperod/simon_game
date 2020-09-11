@@ -79,7 +79,7 @@ $('.btn').on('click', function() {
   userClickedPattern.push(userChosenColors);
   animatePress(userChosenColors);
   playSound(userChosenColors);
-  checkAnswer(userClickedPattern.lastIndexOf(userChosenColors));
+  checkSequence(userClickedPattern.lastIndexOf(userChosenColors));
 });
 
 $('.btn')
