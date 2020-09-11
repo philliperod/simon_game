@@ -3,7 +3,6 @@ var gamePattern = [];
 var userClickedPattern = [];
 var level = 0;
 var startGame = false;
-var gameToggle = false;
 var failedAudio = new Audio('sounds/wrong.mp3');
 
 // Functions to play sound and to animate selection --------------------------------------------------------------------------------------------------------------
@@ -29,7 +28,6 @@ function startOver() {
 }
 
 function gameOver() {
-  console.log('failed');
   failedAudio.play();
   $('#lead-title').text('Game Over');
   $('h2').text('Press Any Key to Restart');
@@ -40,13 +38,15 @@ function gameOver() {
 }
 
 function nextSequence() {
-  $('h2').text('');
-  level++;
-  $('#level-title').text('Level ' + level);
   var randomNumber = Math.floor(Math.random() * buttonColors.length);
   var randomChosenColors = buttonColors[randomNumber];
   gamePattern.push(randomChosenColors);
-  displaySequence();
+  setTimeout(function() {
+    $('h2').text('');
+    level++;
+    $('#level-title').text('Level ' + level);
+    displaySequence();
+  }, 500);
 }
 
 function displaySequence() {
@@ -61,10 +61,10 @@ function displaySequence() {
 function checkSequence(lastColor) {
   if (userClickedPattern[lastColor] === gamePattern[lastColor]) {
     if (userClickedPattern.length === gamePattern.length) {
-      console.log('success');
       setTimeout(function() {
         nextSequence();
       }, 1000);
+      userClickedPattern = [];
     }
   } else {
     gameOver();
