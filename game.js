@@ -19,13 +19,24 @@ function animatePress(currentColor) {
     .animate({opacity: 1}, 50);
 }
 
-// functions to run sequence, check answers from player's choice compared to selected game choices, and to restart the game ----------------------------------------
+// functions to restart game, display simon's sequence, run sequence, compare player's sequence to simon -----------------------------------------------------------
 
 function startOver() {
   startGame = false;
   gamePattern = [];
   userClickedPattern = [];
   level = 0;
+}
+
+function displaySequence() {
+  $.each(gamePattern, function(index, color) {
+    setTimeout(function() {
+      $('#' + color)
+        .animate({opacity: 0.25}, 100)
+        .animate({opacity: 1}, 50);
+      playSound(color);
+    }, 1000 * index);
+  });
 }
 
 function nextSequence() {
@@ -35,24 +46,17 @@ function nextSequence() {
   var randomNumber = Math.floor(Math.random() * buttonColors.length);
   var randomChosenColors = buttonColors[randomNumber];
   gamePattern.push(randomChosenColors);
+  displaySequence();
 
-  $('#' + randomChosenColors)
-    .animate({opacity: 0.25}, 100)
-    .animate({opacity: 1}, 50);
-  playSound(randomChosenColors);
+  // $('#' + randomChosenColors)
+  //   .animate({opacity: 0.25}, 100)
+  //   .animate({opacity: 1}, 50);
+  // playSound(randomChosenColors);
 }
 
 function checkAnswer(lastColor) {
   if (userClickedPattern[lastColor] === gamePattern[lastColor]) {
-    var count = 0;
-
-    for (var i = 0; i < gamePattern.length; i++) {
-      if (gamePattern[i] === userClickedPattern[i]) {
-        count++;
-      }
-    }
-
-    if (count === gamePattern.length) {
+    if (userClickedPattern.length === gamePattern.length) {
       console.log('success');
       setTimeout(function() {
         nextSequence();
