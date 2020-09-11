@@ -6,6 +6,21 @@ var startGame = false;
 var gameToggle = false;
 var failedAudio = new Audio('sounds/wrong.mp3');
 
+// Functions to play sound and to animate clicks -------------------------------------------------------------------------------------------------------------------
+
+function playSound(name) {
+  var soundColor = new Audio('sounds/' + name + '.mp3');
+  soundColor.play();
+}
+
+function animatePress(currentColor) {
+  $('#' + currentColor)
+    .animate({opacity: 0.25}, 100)
+    .animate({opacity: 1}, 50);
+}
+
+// functions to run sequence, check answers from player's choice compared to selected game choices, and to restart the game ----------------------------------------
+
 function nextSequence() {
   level++;
   $('#level-title').text('Level ' + level);
@@ -17,17 +32,6 @@ function nextSequence() {
     .animate({opacity: 0.25}, 100)
     .animate({opacity: 1}, 50);
   playSound(randomChosenColors);
-}
-
-function playSound(name) {
-  var soundColor = new Audio('sounds/' + name + '.mp3');
-  soundColor.play();
-}
-
-function animatePress(currentColor) {
-  $('#' + currentColor)
-    .animate({opacity: 0.25}, 100)
-    .animate({opacity: 1}, 50);
 }
 
 function checkAnswer(lastColor) {
@@ -58,6 +62,8 @@ function checkAnswer(lastColor) {
     }, 100);
   }
 }
+
+// Eventlisteners to start the game, move-over function, and player's click function -------------------------------------------------------------------------------
 
 $('.btn').on('click', function() {
   var userChosenColors = this.id;
