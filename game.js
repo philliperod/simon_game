@@ -21,7 +21,15 @@ function animatePress(currentColor) {
 
 // functions to run sequence, check answers from player's choice compared to selected game choices, and to restart the game ----------------------------------------
 
+function startOver() {
+  startGame = false;
+  gamePattern = [];
+  userClickedPattern = [];
+  level = 0;
+}
+
 function nextSequence() {
+  $('h2').text('');
   level++;
   $('#level-title').text('Level ' + level);
   var randomNumber = Math.floor(Math.random() * buttonColors.length);
@@ -55,11 +63,11 @@ function checkAnswer(lastColor) {
     failedAudio.play();
     $('#lead-title').text('Game Over');
     $('h2').text('Press Any Key to Restart');
-
     $('body').addClass('game-over');
     setTimeout(function() {
       $('body').removeClass('game-over');
     }, 100);
+    startOver();
   }
 }
 
