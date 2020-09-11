@@ -6,7 +6,7 @@ var startGame = false;
 var gameToggle = false;
 var failedAudio = new Audio('sounds/wrong.mp3');
 
-// Functions to play sound and to animate clicks -------------------------------------------------------------------------------------------------------------------
+// Functions to play sound and to animate selection --------------------------------------------------------------------------------------------------------------
 
 function playSound(name) {
   var soundColor = new Audio('sounds/' + name + '.mp3');
@@ -19,7 +19,7 @@ function animatePress(currentColor) {
     .animate({opacity: 1}, 50);
 }
 
-// functions to restart game, display simon's sequence, run sequence, compare player's sequence to simon -----------------------------------------------------------
+// Functions to restart game, game over, display simon's sequence, run sequence, compare player's sequence to simon ------------------------------------------------
 
 function startOver() {
   startGame = false;
@@ -42,9 +42,7 @@ function gameOver() {
 function displaySequence() {
   $.each(gamePattern, function(index, color) {
     setTimeout(function() {
-      $('#' + color)
-        .animate({opacity: 0.25}, 100)
-        .animate({opacity: 1}, 50);
+      animatePress(color);
       playSound(color);
     }, 1000 * index);
   });
@@ -74,7 +72,7 @@ function checkAnswer(lastColor) {
   }
 }
 
-// Eventlisteners to start the game, move-over function, and player's click function -------------------------------------------------------------------------------
+// Eventlisteners for player to start the gam eand select colors --------------------------------------------------------------------------------------------------
 
 $('.btn').on('click', function() {
   var userChosenColors = this.id;
