@@ -39,15 +39,6 @@ function gameOver() {
   }, 100);
 }
 
-function displaySequence() {
-  $.each(gamePattern, function(index, color) {
-    setTimeout(function() {
-      animatePress(color);
-      playSound(color);
-    }, 1000 * index);
-  });
-}
-
 function nextSequence() {
   $('h2').text('');
   level++;
@@ -58,7 +49,16 @@ function nextSequence() {
   displaySequence();
 }
 
-function checkAnswer(lastColor) {
+function displaySequence() {
+  $.each(gamePattern, function(index, color) {
+    setTimeout(function() {
+      animatePress(color);
+      playSound(color);
+    }, 1000 * index);
+  });
+}
+
+function checkSequence(lastColor) {
   if (userClickedPattern[lastColor] === gamePattern[lastColor]) {
     if (userClickedPattern.length === gamePattern.length) {
       console.log('success');
@@ -72,7 +72,7 @@ function checkAnswer(lastColor) {
   }
 }
 
-// Eventlisteners for player to start the gam eand select colors --------------------------------------------------------------------------------------------------
+// Eventlisteners for player to start the game and select colors --------------------------------------------------------------------------------------------------
 
 $('.btn').on('click', function() {
   var userChosenColors = this.id;
